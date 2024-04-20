@@ -91,9 +91,7 @@ class DependencyInjectionTest extends TestCase
 
     public function testHelloService()
     {
-        $this->app->singleton(HelloService::class, function ($app) {
-            return new HelloServiceIndonesia("Eko");
-        });
+        $this->app->singleton(HelloService::class, HelloServiceIndonesia::class);
 
         $helloService = $this->app->make(HelloService::class);
 
