@@ -16,3 +16,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', function () {
+    return 'Login page';
+});
+
+Route::redirect('/home', '/login');
+
+Route::fallback(function () {
+    return '404 Not Found';
+});
+
+
+Route::view('/new', 'new' ,['name' => 'kenntcky', 'site' => 'buku tamu :vos']);
+
+Route::get('/newer', function () {
+    return view('new', ['name' => 'kenntcky', 'site' => 'buku tamu :vos']);
+});
+
+Route::view('/transaction', 'shop.transaction', ['price' => '$9999']);
+
+Route::get('/marketplace/{category?}/{id?}', function ($category = null, $id = null) {
+    return view('shop.marketplace', ['productCategory' => $category, 'productId' => $id]);
+})->where('id', '[0-9]+');
+
+Route::get('/marketplace/conflict', function () {
+    return 'Routing conflict, uses the first route made.'; // will not execute.
+});
