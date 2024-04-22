@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\InputController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarketplaceController;
 
@@ -49,3 +50,9 @@ Route::get('/marketplace/conflict', function () {
 Route::get('/hello/{name}', [HelloController::class, 'hello']);
 
 Route::get('/request', [HelloController::class, 'request']);
+
+Route::get('/input', [InputController::class, 'hello']);
+Route::post('/input', [InputController::class, 'hello']);
+Route::post('/input/nested', [InputController::class, 'helloNested']);
+Route::post('/input/all', [InputController::class, 'helloAll']);
+Route::post('/input/array', [InputController::class, 'arrayInput']);
