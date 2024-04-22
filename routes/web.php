@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MarketplaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +35,11 @@ Route::get('/newer', function () {
     return view('new', ['name' => 'kenntcky', 'site' => 'buku tamu :vos']);
 });
 
-Route::view('/transaction', 'shop.transaction', ['price' => '$9999']);
+Route::view('/transaction', 'shop.transaction', ['price' => '$9999'])
+->name('transaction.detail');
 
-Route::get('/marketplace/{category?}/{id?}', function ($category = null, $id = null) {
-    return view('shop.marketplace', ['productCategory' => $category, 'productId' => $id]);
-})->where('id', '[0-9]+');
+Route::get('/marketplace/{category?}/{id?}', [MarketplaceController::class, 'route']
+)->where('id', '[0-9]+')->name('marketplace.detail');
 
 Route::get('/marketplace/conflict', function () {
     return 'Routing conflict, uses the first route made.'; // will not execute.
