@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarketplaceController;
 
@@ -44,3 +45,7 @@ Route::get('/marketplace/{category?}/{id?}', [MarketplaceController::class, 'rou
 Route::get('/marketplace/conflict', function () {
     return 'Routing conflict, uses the first route made.'; // will not execute.
 });
+
+Route::get('/hello/{name}', [HelloController::class, 'hello']);
+
+Route::get('/request', [HelloController::class, 'request']);
